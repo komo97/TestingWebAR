@@ -5,6 +5,11 @@
 
 <!-- style for the loader -->
 <style>
+  @font-face {
+    font-family: syncopate;
+    src: url("./dist/static/Syncopate-Regular.ttf");
+  }
+
   .arjs-loader {
     height: 100%;
     width: 100%;
@@ -23,6 +28,21 @@
     font-size: 1.25em;
     color: white;
   }
+  
+  .usage {
+    background-color: #295a7a;
+    position: absolute;
+    width: 100vw;
+    height: 5vh;
+    bottom: 0px;
+    z-index: 10000;
+    left: 0px;
+    text-align: center;
+  }
+  .usageText{
+    color: #FFFFFF;
+    font-family: syncopate;
+  }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -36,7 +56,7 @@
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: true;"
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
@@ -51,9 +71,9 @@
     >
       <a-entity
         gltf-model="src: url(./dist/static/scene.glb);"
-        scale="2.5 2.5 2.5"
-        position="0 150 -180"
-        rotation="0 0 0"
+        scale="20 20 20"
+        position="0 250 -180"
+        rotation="0 0 5"
         material="color: white"
         animation-mixer="clip: *;"
         >
@@ -64,4 +84,7 @@
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
   </a-scene>
+  <div class="usage">
+    <a class="usageText"><b>Material exclusivo para uso de Bayer.</b> Prohibida su distribucion. Su venta requiere receta médica. No te automediques. Reg. No. 036M2022 SSA IV. No. eDAM CH-20230109-87</a>
+  </div>
 </body>
