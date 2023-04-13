@@ -62,20 +62,19 @@
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
     <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-marker
-      type="pattern"
-      size=".30"
-      url="./dist/static/target.patt"
+    <a-nft
+      type="nft"
+      url="./dist/static/target"
       smooth="true"
-      smoothCount="5"
+      smoothCount="10"
       smoothTolerance=".01"
       smoothThreshold="5"
     >
       <a-entity
         gltf-model="src: url(./dist/static/scene.glb);"
-        scale="20 20 20"
-        position="0 250 -180"
-        rotation="0 0 5"
+        scale="25 25 25"
+        position="0 0 -250"
+        rotation="10 0 0"
         material="color: white"
         animation-mixer="clip: *;"
         >
@@ -84,7 +83,7 @@
     </a-nft>
 
     <!-- static camera that moves according to the device movemenents -->
-    <a-entity camera></a-entity>
+    <a-entity camera far="10000000000"></a-entity>
   </a-scene>
   <div class="usage">
     <a class="usageText"><b>Material exclusivo para uso de Bayer.</b> Prohibida su distribucion. Su venta requiere receta médica. No te automediques. Reg. No. 036M2022 SSA IV. No. eDAM CH-20230109-87</a>
