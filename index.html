@@ -78,24 +78,28 @@
       smooth="true"
       smoothCount="10"
       smoothTolerance=".01"
-      smoothThreshold="5"
+      smoothThreshold="10"
+      size=".35"
     >
       <a-entity
         gltf-model="src: url(./dist/static/scene.glb);"
-        scale="1 1 1"
-        position="0 500 -400"
+        scale=".9 .9 .9"
+        position="50 500 -400"
         rotation="0 0 0"
         material="color: white"
         animation-mixer="clip: *;"
         no-cull
         >
-
+        <a-entity geometry="primitive: plane; height: 530; width: 250"
+                  position="0 -200 0"
+                  rotation="90 0 0"
+                  material="side: double; src:./dist/static/bg.png;"></a-entity>
       </a-entity>
       <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
     </a-nft>
 
     <!-- static camera that moves according to the device movemenents -->
-    <a-entity camera far="10000000000"></a-entity>
+    <a-entity camera far="1000000"></a-entity>
   </a-scene>
   <div class="usage">
     <a class="usageText"><b>Material exclusivo para uso de Bayer.</b> Prohibida su distribucion. Su venta requiere receta médica. No te automediques. Reg. No. 036M2022 SSA IV. No. eDAM CH-20230109-87</a>
