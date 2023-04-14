@@ -7,7 +7,6 @@
 <style>
   @font-face {
     font-family: syncopate;
-    src: url("./dist/static/Syncopate-Regular.ttf");
   }
 
   .arjs-loader {
@@ -30,32 +29,24 @@
   }
   
   .usage {
-    background-color: #295a7a;
+    background-color: #ffffff;
     position: absolute;
     width: 100vw;
-    height: 5vh;
+    height: 4vh;
     bottom: 0px;
     z-index: 10000;
     left: 0px;
     text-align: center;
   }
   .usageText{
-    color: #FFFFFF;
-    font-family: syncopate;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 9px;
   }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
-  <script>
-  AFRAME.registerComponent('no-cull', {
-    init() {
-      this.el.addEventListener('model-loaded', () => {
-        this.el.object3D.traverse(obj => obj.frustumCulled = false)
-      })
-    },
-  })
-  </script>
+
   
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
@@ -78,24 +69,38 @@
       smooth="true"
       smoothCount="50"
       smoothTolerance=".01"
-      smoothThreshold="10"
+      smoothThreshold="50"
       size=".35"
+      emitevents="true"	
     >
-      <a-entity
-        gltf-model="src: url(./dist/static/scene.glb);"
-        scale="18 18 18"
-        position="50 500 -300"
-        rotation="0 0 0"
-        material="color: white"
-        animation-mixer="clip: *;"
-        no-cull
-        >
-      </a-entity>
+      <!-- -->
       <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
     </a-nft>
-
+    <a-entity
+        id="model"
+        gltf-model="src: url(./dist/static/scene.glb);"
+        scale="18 18 18"
+        position="0 0 -600"
+        rotation="90 0 0"
+        material="color: white"
+        animation-mixer="clip: *;"
+        visible="false"
+        >
+      </a-entity> 
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera far="1000000"></a-entity>
+    <script>
+      window.addEventListener("markerFound", (event) => {
+      // Hide loading overlay
+        const b = document.getElementById("model");
+        b.setAttribute('visible', true);
+      });
+      window.addEventListener("markerLost", (event) => {
+      // Hide loading overlay
+        const b = document.getElementById("model");
+        b.setAttribute('visible', false);
+      });
+    </script>
   </a-scene>
   <div class="usage">
     <a class="usageText"><b>Material exclusivo para uso de Bayer.</b> Prohibida su distribucion. Su venta requiere receta médica. No te automediques. Reg. No. 036M2022 SSA IV. No. eDAM CH-20230109-87</a>
