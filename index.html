@@ -1,108 +1,112 @@
-<!-- import aframe and then ar.js with image tracking / location based features -->
-<script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<html>
 
-<!-- style for the loader -->
-<style>
-  @font-face {
-    font-family: syncopate;
-  }
-
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: white;
-  }
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <!-- import aframe and then ar.js with image tracking / location based features -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    
+    <!-- style for the loader -->
+    <style>
+    
+      .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+      
+      .usage {
+        background-color: #ffffff;
+        position: absolute;
+        width: 100vw;
+        height: 4vh;
+        bottom: 0px;
+        z-index: 10000;
+        left: 0px;
+        text-align: center;
+      }
+      .usageText{
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+      }
+    </style>
+  </head>
   
-  .usage {
-    background-color: #ffffff;
-    position: absolute;
-    width: 100vw;
-    height: 4vh;
-    bottom: 0px;
-    z-index: 10000;
-    left: 0px;
-    text-align: center;
-  }
-  .usageText{
-    color: #000000;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 9px;
-  }
-</style>
-
-<body style="margin : 0px; overflow: hidden;">
-
+  <body style="margin : 0px; overflow: hidden;">
   
-  <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
-
-  <!-- a-frame scene -->
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <!-- a-nft is the anchor that defines an Image Tracking entity -->
-    <!-- on 'url' use the path to the Image Descriptors created before. -->
-    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-nft
-      type="nft"
-      url="./dist/static/target"
-      smooth="true"
-      smoothCount="50"
-      smoothTolerance=".01"
-      smoothThreshold="50"
-      size=".35"
-      emitevents="true"	
+    
+    <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+    <div class="arjs-loader">
+      <div>Loading, please wait...</div>
+    </div>
+  
+    <!-- a-frame scene -->
+    <a-scene
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     >
-      <!-- -->
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-    </a-nft>
-    <a-entity
-        id="model"
-        gltf-model="src: url(./dist/static/scene.glb);"
-        scale="18 18 18"
-        position="-5 0 -550"
-        rotation="90 0 0"
-        material="color: white"
-        animation-mixer="clip: *;"
-        visible="false"
-        >
-      </a-entity> 
-    <!-- static camera that moves according to the device movemenents -->
-    <a-entity camera far="1000000"></a-entity>
-    <script>
-      window.addEventListener("markerFound", (event) => {
-      // Hide loading overlay
-        const b = document.getElementById("model");
-        b.setAttribute('visible', true);
-      });
-      window.addEventListener("markerLost", (event) => {
-      // Hide loading overlay
-        const b = document.getElementById("model");
-        b.setAttribute('visible', false);
-      });
-    </script>
-  </a-scene>
-  <div class="usage">
-    <a class="usageText"><b>Material exclusivo para uso de Bayer.</b> Prohibida su distribucion. Su venta requiere receta médica. No te automediques. Reg. No. 036M2022 SSA IV. No. eDAM CH-20230109-87</a>
-  </div>
-</body>
+      <!-- a-nft is the anchor that defines an Image Tracking entity -->
+      <!-- on 'url' use the path to the Image Descriptors created before. -->
+      <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
+      <a-nft
+        type="nft"
+        url="./dist/static/target"
+        smooth="true"
+        smoothCount="50"
+        smoothTolerance=".01"
+        smoothThreshold="50"
+        size=".35"
+        emitevents="true"	
+      >
+        <!-- -->
+        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+      </a-nft>
+      <a-entity
+          id="model"
+          gltf-model="src: url(./dist/static/scene.glb);"
+          scale="18 18 18"
+          position="-5 0 -550"
+          rotation="90 0 0"
+          material="color: white"
+          animation-mixer="clip: *;"
+          visible="false"
+          >
+        </a-entity> 
+      <!-- static camera that moves according to the device movemenents -->
+      <a-entity camera far="1000000"></a-entity>
+      <script>
+        window.addEventListener("markerFound", (event) => {
+        // Hide loading overlay
+          const b = document.getElementById("model");
+          b.setAttribute('visible', true);
+        });
+        window.addEventListener("markerLost", (event) => {
+        // Hide loading overlay
+          const b = document.getElementById("model");
+          b.setAttribute('visible', false);
+        });
+      </script>
+    </a-scene>
+    <div class="usage">
+      <a class="usageText"><b>Material exclusivo para uso de Bayer.</b> Prohibida su distribucion. Su venta requiere receta médica. No te automediques. Reg. No. 036M2022 SSA IV. No. eDAM CH-20230109-87</a>
+    </div>
+  </body>
+</html>
